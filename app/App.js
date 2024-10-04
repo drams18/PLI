@@ -1,11 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import SearchBar from './components/search/SearchBar';
+import AddProduct from './components/addProduct/addProduct'; 
+import { storage } from './firebaseConfig';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Badman !</Text>
-      <StatusBar style="auto" />
+      {/* <SearchBar/> */}
+      <AddProduct/>
     </View>
   );
 }
@@ -16,5 +18,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: '20%',
   },
 });
