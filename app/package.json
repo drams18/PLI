@@ -9,8 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~51.0.28",
+    "@react-native-community/netinfo": "^11.4.1",
+    "@react-native-firebase/app": "^21.0.0",
+    "@react-native-firebase/storage": "^21.0.0",
+    "expo": "^51.0.36",
+    "expo-file-system": "^17.0.1",
+    "expo-image-picker": "^15.0.7",
     "expo-status-bar": "~1.12.1",
+    "express": "^4.21.0",
+    "firebase": "^10.14.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.15",
     "react": "18.2.0",
     "react-native": "0.74.5"
   },
