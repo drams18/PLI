@@ -50,12 +50,14 @@ const SearchBar = () => {
   }, []);
 
   const handleSearch = () => {
-    setShowSearchButton(false); // Masquer le bouton lors de la recherche
+    setShowSearchButton(false);
     const results = products.filter((product) => {
       const matchesName =
-        product.name && product.name.toLowerCase().includes(query.toLowerCase());
+        product.name &&
+        product.name.toLowerCase().includes(query.toLowerCase());
       const matchesBrand =
-        product.brand && product.brand.toLowerCase().includes(query.toLowerCase());
+        product.brand &&
+        product.brand.toLowerCase().includes(query.toLowerCase());
       const matchesEan =
         product.eans && product.eans.some((ean) => ean.includes(query));
       return matchesName || matchesBrand || matchesEan;
@@ -65,7 +67,8 @@ const SearchBar = () => {
       const nameComparison = a.name
         .toLowerCase()
         .localeCompare(b.name.toLowerCase());
-      const scoreComparison = (b.validation_score || 0) - (a.validation_score || 0);
+      const scoreComparison =
+        (b.validation_score || 0) - (a.validation_score || 0);
       return nameComparison || scoreComparison;
     });
 
@@ -89,11 +92,10 @@ const SearchBar = () => {
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
-    setSuggestions([]); // Effacer les suggestions quand un produit est sélectionné
-    setQuery(product.name); // Remplir la barre de recherche avec le produit sélectionné
+    setSuggestions([]);
+    setQuery(product.name);
   };
 
-  // Fonction de filtrage pour les suggestions
   const handleInputChange = (text) => {
     setQuery(text);
     if (text.length > 0) {
@@ -104,7 +106,7 @@ const SearchBar = () => {
             product.brand.toLowerCase().includes(text.toLowerCase()))
         );
       });
-      setSuggestions(matches.slice(0, 5)); // Limite à 5 suggestions
+      setSuggestions(matches.slice(0, 7));
     } else {
       setSuggestions([]);
     }
@@ -125,8 +127,8 @@ const SearchBar = () => {
         style={styles.searchInput}
         placeholder="Rechercher un produit par nom, marque ou code-barres..."
         value={query}
-        onChangeText={handleInputChange} // Remplacer la fonction de recherche par handleInputChange
-        onSubmitEditing={handleSearch} // Permet de lancer la recherche avec la touche "Entrée"
+        onChangeText={handleInputChange}
+        onSubmitEditing={handleSearch}
       />
       {showSearchButton && (
         <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
@@ -134,7 +136,6 @@ const SearchBar = () => {
         </TouchableOpacity>
       )}
 
-      {/* Affichage des suggestions */}
       {suggestions.length > 0 && (
         <ScrollView style={styles.suggestionsContainer}>
           {suggestions.map((item) => (
@@ -171,9 +172,12 @@ const SearchBar = () => {
         />
       )}
 
-      {!loading && !error && filteredProducts.length === 0 && query.length >= 1 && (
-        <Text style={styles.noResultsText}>Aucun produit trouvé.</Text>
-      )}
+      {!loading &&
+        !error &&
+        filteredProducts.length === 0 &&
+        query.length >= 1 && (
+          <Text style={styles.noResultsText}>Aucun produit trouvé.</Text>
+        )}
     </View>
   );
 };
@@ -220,7 +224,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    maxHeight: 150, // Limiter la hauteur de la liste
+    maxHeight: 150,
     marginBottom: 10,
   },
   suggestionItem: {

@@ -16,15 +16,14 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import NetInfo from "@react-native-community/netinfo";
 
-
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [productBrand, setProductBrand] = useState("");
   const [barcode, setBarcode] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [ingredientsImage, setIngredientsImage] = useState(null);
-  const [loading, setLoading] = useState(false); // État de chargement
-  const [notification, setNotification] = useState(null); // État de notification
+  const [loading, setLoading] = useState(false); // chargement page
+  const [notification, setNotification] = useState(null); // notif
 
   const selectImage = async (setImage) => {
     let permissionResult =
@@ -62,17 +61,15 @@ const AddProduct = () => {
         );
         return;
       }
-  
-      // Vérification de la connexion Internet
+
       const netInfo = await NetInfo.fetch();
       if (!netInfo.isConnected) {
         Alert.alert("Erreur", "Aucune connexion Internet.");
         return;
       }
-  
-      setLoading(true); // Activer le chargement
-  
-      // Télécharger les images sur Firebase Storage
+
+      setLoading(true);
+
       const productImageRef = ref(
         storage,
         `images/products/${productBrand}.${productName}.${barcode}.${Date.now()}.jpg`
@@ -81,28 +78,26 @@ const AddProduct = () => {
         storage,
         `images/ingredients/${productBrand}.${productName}.${barcode}.${Date.now()}.jpg`
       );
-  
-      // Vérifier que la première image est bien récupérée
+
       const productImageResponse = await fetch(productImage);
       if (!productImageResponse.ok) {
         throw new Error("Erreur lors de la récupération de l'image du produit");
       }
       const productImageBlob = await productImageResponse.blob();
       await uploadBytes(productImageRef, productImageBlob);
-  
-      // Vérifier que la seconde image est bien récupérée
+
       const ingredientsImageResponse = await fetch(ingredientsImage);
       if (!ingredientsImageResponse.ok) {
-        throw new Error("Erreur lors de la récupération de l'image des ingrédients");
+        throw new Error(
+          "Erreur lors de la récupération de l'image des ingrédients"
+        );
       }
       const ingredientsImageBlob = await ingredientsImageResponse.blob();
       await uploadBytes(ingredientsImageRef, ingredientsImageBlob);
-  
-      // Récupérer les URL des images
+
       const productImageUrl = await getDownloadURL(productImageRef);
       const ingredientsImageUrl = await getDownloadURL(ingredientsImageRef);
-  
-      // Préparer les données du produit
+
       const productData = {
         productName,
         productBrand,
@@ -110,11 +105,10 @@ const AddProduct = () => {
         productImageUrl,
         ingredientsImageUrl,
       };
-  
-      // Envoyer les données à Firestore
-      const productDocRef = doc(firestore, "products", barcode); // Utiliser le code-barres comme identifiant unique
+
+      const productDocRef = doc(firestore, "products", barcode);
       await setDoc(productDocRef, productData);
-  
+
       Alert.alert(
         "Succès",
         "Les données du produit ont été enregistrées avec succès !"
@@ -129,8 +123,6 @@ const AddProduct = () => {
       setLoading(false);
     }
   };
-  
-  
 
   return (
     <ScrollView style={styles.container}>
@@ -186,20 +178,18 @@ const AddProduct = () => {
         </TouchableOpacity>
       )}
 
-      {/* Bouton d'envoi avec indicateur de chargement */}
       <TouchableOpacity
         style={styles.submitButton}
         onPress={handleSendData}
-        disabled={loading} // Désactiver le bouton si en cours de chargement
+        disabled={loading}
       >
         {loading ? (
-          <ActivityIndicator size="small" color="#FFF" /> // Indicateur de chargement
+          <ActivityIndicator size="small" color="#FFF" />
         ) : (
           <Text style={styles.submitButtonText}>Envoyer</Text>
         )}
       </TouchableOpacity>
 
-      {/* Affichage de la notification */}
       {notification && (
         <Text style={styles.notificationText}>{notification}</Text>
       )}

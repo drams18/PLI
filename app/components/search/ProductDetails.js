@@ -12,13 +12,18 @@ const ProductDetails = ({ product, onBack }) => {
   return (
     <ScrollView style={styles.container}>
       {product.images && product.images.image ? (
-        <Image source={{ uri: product.images.image }} style={styles.mainImage} />
+        <Image
+          source={{ uri: product.images.image }}
+          style={styles.mainImage}
+        />
       ) : (
         <Text style={styles.noImageText}>Image non disponible</Text>
       )}
 
       <Text style={styles.title}>{product.name || "Nom non disponible"}</Text>
-      <Text style={styles.brand}>Marque : {product.brand || "Non disponible"}</Text>
+      <Text style={styles.brand}>
+        Marque : {product.brand || "Non disponible"}
+      </Text>
       <Text style={styles.info}>ID : {product.id || "Non disponible"}</Text>
       {product.eans && product.eans.length > 0 ? (
         <Text style={styles.info}>Code-barres : {product.eans.join(", ")}</Text>
@@ -28,9 +33,10 @@ const ProductDetails = ({ product, onBack }) => {
       <Text style={styles.info}>
         Score de validation : {product.validation_score || "Non disponible"}
       </Text>
-      <Text style={styles.info}>Score : {product.score || "Non disponible"}</Text>
+      <Text style={styles.info}>
+        Score : {product.score || "Non disponible"}
+      </Text>
 
-      {/* Affichage des catégories */}
       {product.categories && product.categories.length > 0 ? (
         <>
           <Text style={styles.sectionTitle}>Catégories</Text>
@@ -44,7 +50,6 @@ const ProductDetails = ({ product, onBack }) => {
         <Text style={styles.sectionContent}>Aucune catégorie disponible</Text>
       )}
 
-      {/* Affichage des compositions */}
       {product.compositions && product.compositions.length > 0 ? (
         <>
           <Text style={styles.sectionTitle}>Compositions</Text>
@@ -53,8 +58,7 @@ const ProductDetails = ({ product, onBack }) => {
               <Text style={styles.compositionTitle}>
                 Composition {compIndex + 1}:
               </Text>
-              {composition.ingredients &&
-                composition.ingredients.length > 0 ? (
+              {composition.ingredients && composition.ingredients.length > 0 ? (
                 composition.ingredients.map((ingredient, ingIndex) => (
                   <View key={ingIndex} style={styles.ingredientContainer}>
                     <Text style={styles.ingredientName}>
@@ -69,9 +73,7 @@ const ProductDetails = ({ product, onBack }) => {
                     {ingredient.families && ingredient.families.length > 0 && (
                       <Text style={styles.ingredientInfo}>
                         Famille :{" "}
-                        {ingredient.families
-                          .map((fam) => fam.name)
-                          .join(", ")}
+                        {ingredient.families.map((fam) => fam.name).join(", ")}
                       </Text>
                     )}
                   </View>

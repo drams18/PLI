@@ -1,13 +1,36 @@
-import { StyleSheet, View } from 'react-native';
-import SearchBar from './components/search/SearchBar';
-import AddProduct from './components/addProduct/addProduct'; 
-import { storage } from './firebaseConfig';
+import React, { useState } from "react";
+import { StyleSheet, View, Button } from "react-native";
+import SearchBar from "./components/search/SearchBar";
+import AddProduct from "./components/addProduct/addProduct";
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("addProduct");
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "search":
+        return <SearchBar />;
+      case "addProduct":
+        return <AddProduct />;
+      default:
+        return <AddProduct />; // par défaut
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* <SearchBar/> */}
-      <AddProduct/>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Rechercher un produit"
+          onPress={() => setCurrentPage("search")}
+        />
+        <Button
+          title="Ajouter un produit"
+          onPress={() => setCurrentPage("addProduct")}
+        />
+      </View>
+
+      {renderPage()}
     </View>
   );
 }
@@ -15,9 +38,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '20%',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "20%",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
   },
 });
