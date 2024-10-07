@@ -21,43 +21,41 @@ const AddProduct = () => {
   const [productBrand, setProductBrand] = useState("");
   const [barcode, setBarcode] = useState("");
   const [productImage, setProductImage] = useState(null);
-  const [ingredientsImage, setIngredientsImage] = useState(null);
-  const [loading, setLoading] = useState(false); // chargement page
-  const [notification, setNotification] = useState(null); // notif
+  const [loading, setLoading] = useState(false); // Chargement page
+  const [notification, setNotification] = useState(null); // Notification
 
-  const selectImage = async (setImage) => {
-    let permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+  const selectImage = async () => {
+    try {
+      const permissionResult =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (permissionResult.granted === false) {
-      Alert.alert("Permission d'accéder à la galerie est requise.");
-      return;
-    }
+      if (!permissionResult.granted) {
+        Alert.alert("Permission d'accéder à la galerie est requise.");
+        return;
+      }
 
-    let pickerResult = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+      const pickerResult = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
-    if (!pickerResult.canceled) {
-      setImage(pickerResult.assets[0].uri);
+      if (!pickerResult.canceled) {
+        setProductImage(pickerResult.assets[0].uri);
+        console.log("Image sélectionnée : ", pickerResult.assets[0].uri);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la sélection de l'image :", error);
     }
   };
 
   const handleSendData = async () => {
     try {
-      if (
-        !productName ||
-        !productBrand ||
-        !barcode ||
-        !productImage ||
-        !ingredientsImage
-      ) {
+      if (!productName || !productBrand || !barcode || !productImage) {
         Alert.alert(
           "Erreur",
-          "Veuillez remplir tous les champs et fournir les images."
+          "Veuillez remplir tous les champs et fournir une image du produit."
         );
         return;
       }
@@ -74,36 +72,33 @@ const AddProduct = () => {
         storage,
         `images/products/${productBrand}.${productName}.${barcode}.${Date.now()}.jpg`
       );
-      const ingredientsImageRef = ref(
-        storage,
-        `images/ingredients/${productBrand}.${productName}.${barcode}.${Date.now()}.jpg`
-      );
 
-      const productImageResponse = await fetch(productImage);
-      if (!productImageResponse.ok) {
-        throw new Error("Erreur lors de la récupération de l'image du produit");
-      }
-      const productImageBlob = await productImageResponse.blob();
-      await uploadBytes(productImageRef, productImageBlob);
-
-      const ingredientsImageResponse = await fetch(ingredientsImage);
-      if (!ingredientsImageResponse.ok) {
-        throw new Error(
-          "Erreur lors de la récupération de l'image des ingrédients"
+      try {
+        const productImageResponse = await fetch(productImage);
+        if (!productImageResponse.ok) {
+          throw new Error(
+            "Erreur lors de la récupération de l'image du produit"
+          );
+        }
+        const productImageBlob = await productImageResponse.blob();
+        await uploadBytes(productImageRef, productImageBlob);
+        console.log("Image du produit téléchargée avec succès.");
+      } catch (error) {
+        console.error("Erreur lors de l'envoi de l'image du produit :", error);
+        Alert.alert(
+          "Erreur",
+          "Une erreur est survenue lors de l'envoi de l'image du produit."
         );
+        return;
       }
-      const ingredientsImageBlob = await ingredientsImageResponse.blob();
-      await uploadBytes(ingredientsImageRef, ingredientsImageBlob);
 
       const productImageUrl = await getDownloadURL(productImageRef);
-      const ingredientsImageUrl = await getDownloadURL(ingredientsImageRef);
 
       const productData = {
         productName,
         productBrand,
         barcode,
         productImageUrl,
-        ingredientsImageUrl,
       };
 
       const productDocRef = doc(firestore, "products", barcode);
@@ -113,8 +108,9 @@ const AddProduct = () => {
         "Succès",
         "Les données du produit ont été enregistrées avec succès !"
       );
+      console.log("Produit ajouté avec succès : ", productData);
     } catch (error) {
-      console.error("Erreur lors de l'envoi des données:", error);
+      console.error("Erreur lors de l'envoi des données :", error);
       Alert.alert(
         "Erreur",
         "Une erreur est survenue lors de l'envoi des données. Veuillez réessayer."
@@ -158,22 +154,7 @@ const AddProduct = () => {
       {productImage ? (
         <Image source={{ uri: productImage }} style={styles.image} />
       ) : (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => selectImage(setProductImage)}
-        >
-          <Text style={styles.buttonText}>Choisir une image</Text>
-        </TouchableOpacity>
-      )}
-
-      <Text style={styles.label}>Photo des ingrédients</Text>
-      {ingredientsImage ? (
-        <Image source={{ uri: ingredientsImage }} style={styles.image} />
-      ) : (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => selectImage(setIngredientsImage)}
-        >
+        <TouchableOpacity style={styles.button} onPress={selectImage}>
           <Text style={styles.buttonText}>Choisir une image</Text>
         </TouchableOpacity>
       )}

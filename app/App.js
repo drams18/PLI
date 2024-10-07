@@ -13,7 +13,7 @@ export default function App() {
       case "addProduct":
         return <AddProduct />;
       default:
-        return <AddProduct />; // par défaut
+        return <AddProduct />;
     }
   };
 
