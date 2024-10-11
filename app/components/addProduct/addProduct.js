@@ -100,9 +100,7 @@ const AddProduct = () => {
         barcode,
         productImageUrl,
       };
-
-      const productDocRef = doc(firestore, "products", barcode);
-      await setDoc(productDocRef, productData);
+      console.log("product data", productData);
 
       Alert.alert(
         "Succès",
