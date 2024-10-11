@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.2.3",
     "@react-native-community/netinfo": "^11.4.1",
     "@react-native-firebase/app": "^17.4.2",
     "@react-native-firebase/storage": "^17.4.2",

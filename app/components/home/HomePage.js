@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/HomePage.css";
 import SearchBar from "../search/SearchBar";
 import AddProduct from "../addProduct/addProduct";
+import homeImage from "../../assets/home.png";
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(null);
@@ -19,12 +20,15 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <h1>Welcome to My App</h1>
-
+      <h1>FLAWA</h1>
+      <div className="imageHome"></div>
+      <div className="backHome"></div>
       <div className="button-container">
-        <button onClick={() => setCurrentPage("search")}>Rechercher un produit</button>
+        <button onClick={() => setCurrentPage("search")}>
+          SCANNER LE PRODUIT
+        </button>
         <button onClick={() => setCurrentPage("addProduct")}>
-          Ajouter un produit
+          AJOUTER UN PRODUIT
         </button>
       </div>
 
