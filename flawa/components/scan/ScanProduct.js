@@ -7,23 +7,29 @@ const BarcodeScanner = () => {
   const [scanned, setScanned] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
 
+  // Demande de permission pour la caméra
   useEffect(() => {
-    (async () => {
+    const requestCameraPermission = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
-    })();
+    };
+
+    requestCameraPermission();
   }, []);
 
+  // Fonction appelée lors du scan du code-barres
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     Alert.alert('Code-barres scanné', `Type: ${type}\nData: ${data}`);
   };
 
+  // Fonction pour démarrer le scan
   const startScanning = () => {
     setIsScanning(true);
     setScanned(false);
   };
 
+  // Affichage en fonction des permissions
   if (hasPermission === null) {
     return (
       <View style={styles.permissionContainer}>
@@ -31,6 +37,7 @@ const BarcodeScanner = () => {
       </View>
     );
   }
+
   if (hasPermission === false) {
     return (
       <View style={styles.permissionContainer}>
@@ -62,6 +69,7 @@ const BarcodeScanner = () => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -9,11 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.0.4",
-    "@react-native-community/netinfo": "^11.4.1",
-    "expo": "~51.0.28",
-    "expo-barcode-scanner": "~13.0.1",
-    "expo-camera": "~15.0.16",
+    "@expo/vector-icons": "^14.0.3",
+    "@react-native-community/netinfo": "11.3.1",
+    "expo": "^51.0.38",
+    "expo-barcode-scanner": "^13.0.1",
+    "expo-camera": "^15.0.16",
     "expo-image-picker": "~15.0.7",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.14.1",
@@ -21,7 +21,7 @@
     "react-native": "0.74.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.24.0"
   },
   "private": true
 }
