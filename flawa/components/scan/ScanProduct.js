@@ -7,6 +7,13 @@ const BarcodeScanner = () => {
   const [scanned, setScanned] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
 
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     Alert.alert('Code-barres scanné', `Type: ${type}\nData: ${data}`);
