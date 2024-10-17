@@ -2128,16 +2128,16 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
-  version "22.7.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.5.tgz#cfde981727a7ab3611a481510b473ae54442b92b"
-  integrity sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==
+  version "22.7.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.6.tgz#3ec3e2b071e136cd11093c19128405e1d1f92f33"
+  integrity sha512-/d7Rnj0/ExXDMcioS78/kf1lMzYk4BZV8MZGTBKzTGZ6/406ukkbYlIsZmMPhcR5KlkunDHQLrtAVmSq7r+mSw==
   dependencies:
     undici-types "~6.19.2"
 
 "@types/node@^18.0.0":
-  version "18.19.55"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.55.tgz#29c3f8e1485a92ec96636957ddec55aabc6e856e"
-  integrity sha512-zzw5Vw52205Zr/nmErSEkN5FLqXPuKX/k5d1D7RKHATGqU7y6YfX9QxZraUzUrFGqH6XzOzG196BC35ltJC4Cw==
+  version "18.19.56"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.56.tgz#e46d3e6e5417d3b89e89ee6207d3c2cba7ad1ef2"
+  integrity sha512-4EMJlWwwGnVPflJAtM14p9eVSa6BOv5b92mCsh5zcM1UagNtEtrbbtaE6WE1tw2TabavatnwqXjlIpcAEuJJNg==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2450,9 +2450,9 @@ babel-plugin-react-compiler@0.0.0-experimental-592953e-20240517:
     zod-validation-error "^2.1.0"
 
 babel-plugin-react-native-web@~0.19.10:
-  version "0.19.12"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.19.12.tgz#90481ee72b515020b06cb644abe1e8a16590bd86"
-  integrity sha512-eYZ4+P6jNcB37lObWIg0pUbi7+3PKoU1Oie2j0C8UF3cXyXoR74tO2NBjI/FORb2LJyItJZEAmjU5pSaJYEL1w==
+  version "0.19.13"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.19.13.tgz#bf919bd6f18c4689dd1a528a82bda507363b953d"
+  integrity sha512-4hHoto6xaN23LCyZgL9LJZc3olmAxd7b6jDzlZnKXAh4rRAbZRKNBJoOOdp46OBqgy+K0t0guTj5/mhA8inymQ==
 
 babel-plugin-transform-flow-enums@^0.0.2:
   version "0.0.2"
@@ -3142,9 +3142,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.28:
-  version "1.5.39"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.39.tgz#5cbe5200b43dff7b7c2bcb6bdacf65d514c76bb2"
-  integrity sha512-4xkpSR6CjuiaNyvwiWDI85N9AxsvbPawB8xc7yzLPonYTuP19BVgYweKyUMFtHEZgIcHWMt1ks5Cqx2m+6/Grg==
+  version "1.5.40"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.40.tgz#5f6aec13751123c5c3185999ebe3e7bcaf828c2b"
+  integrity sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -3381,14 +3381,14 @@ expo-asset@~10.0.10:
     invariant "^2.2.4"
     md5-file "^3.2.3"
 
-expo-barcode-scanner@^13.0.1:
+expo-barcode-scanner@~13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/expo-barcode-scanner/-/expo-barcode-scanner-13.0.1.tgz#c7218c78f9e3d27086473a9826756bbcacd7f117"
   integrity sha512-xBGLT1An2gpAMIQRTLU3oHydKohX8r8F9/ait1Fk9Vgd0GraFZbP4IiT7nHMlaw4H6E7Muucf7vXpGV6u7d4HQ==
   dependencies:
     expo-image-loader "~4.7.0"
 
-expo-camera@^15.0.16:
+expo-camera@~15.0.16:
   version "15.0.16"
   resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-15.0.16.tgz#149f25304ae7d76ae55653ca16f947e9f437c782"
   integrity sha512-FLE02DMqkjwsb7IugKAqQvBe6s+TCQeb5LupO1+r//wAhBwmHncOrc6zV95ZEC2f9PTPK34nFH/s8CDGiVzIAA==
@@ -3457,7 +3457,7 @@ expo-status-bar@~1.12.1:
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.12.1.tgz#52ce594aab5064a0511d14375364d718ab78aa66"
   integrity sha512-/t3xdbS8KB0prj5KG5w7z+wZPFlPtkgs95BsmrP/E7Q0xHXTcDcQ6Cu2FkFuRM+PKTb17cJDnLkawyS5vDLxMA==
 
-expo@^51.0.38:
+expo@^51.0.0:
   version "51.0.38"
   resolved "https://registry.yarnpkg.com/expo/-/expo-51.0.38.tgz#e4127b230454a34a507cfb9f1a2e4b3855cb0579"
   integrity sha512-/B9npFkOPmv6WMIhdjQXEY0Z9k/67UZIVkodW8JxGIXwKUZAGHL+z1R5hTtWimpIrvVhyHUFU3f8uhfEKYhHNQ==
@@ -3651,9 +3651,9 @@ flow-enums-runtime@^0.0.6:
   integrity sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==
 
 flow-parser@0.*:
-  version "0.248.1"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.248.1.tgz#0de3af63d27970d145a02d2c9e0e7e698fb6e92d"
-  integrity sha512-fkCfVPelbTzSVp+jVwSvEyc+I4WG8MNhRG/EWSZZTlgHAMEdhXJaFEbfErXxMktboMhVGchvEFhWxkzNGM1m2A==
+  version "0.249.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.249.0.tgz#6497d05984b786f3d9017a6857fb60529ffef3eb"
+  integrity sha512-ggx9WtnEWgDt+VNOy6r34nqzQ1D/ns+brWHHlcPvU61QHK/HRQ6mFpPiuwtYNe4Z09Yv6ByTfnd7IR9GjT0Jog==
 
 fontfaceobserver@^2.1.0:
   version "2.3.0"
@@ -5660,7 +5660,7 @@ prompts@^2.3.2, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5759,6 +5759,13 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-native-camera@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-4.2.1.tgz#caf74081f055e89d7e9b0cd5108965d808c60e90"
+  integrity sha512-+Vkql24PFYQfsPRznJCvPwJQfyzCnjlcww/iZ4Ej80bgivKjL9eU0IMQIXp4yi6XCrKi4voWXxIDPMupQZKeIQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-native@0.74.5:
   version "0.74.5"
