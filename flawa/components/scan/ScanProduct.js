@@ -1,11 +1,37 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function App() {
+export default function ScanProduct() {
   const [facing, setFacing] = useState('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
+  const [scannedData, setScannedData] = useState(null);
+
+  useEffect(() => {
+    if (permission) {
+      if (!permission.granted) {
+        requestPermission();
+      }
+    }
+  }, [permission]);
+
+  const toggleCameraFacing = () => {
+    setFacing(current => (current === 'back' ? 'front' : 'back'));
+  };
+
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    setScannedData(data);
+    console.log(`Barcode scanned: ${data}`); // Log lors du scan
+    alert(`Scanned barcode with data: ${data}`);
+  };
+
+  const startScanning = () => {
+    setScanned(false); // Réinitialiser le statut scanné
+    setScannedData(null); // Réinitialiser les données scannées
+    console.log("Scanning started..."); // Log lors du démarrage du scan
+  };
 
   if (!permission) {
     return <View />;
@@ -20,25 +46,11 @@ export default function App() {
     );
   }
 
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  }
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    if (!scanned) {
-      setScanned(true); // Empêche un scan multiple du même code
-      alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-      
-      // Vous pouvez remettre scanned à false après un certain temps pour permettre d'autres scans
-      setTimeout(() => setScanned(false), 3000); // Réinitialise après 3 secondes
-    }
-  };
-
   return (
     <View style={styles.container}>
       <CameraView
         style={styles.camera}
-        onBarCodeScanned={handleBarCodeScanned}
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         facing={facing}
       >
         <View style={styles.buttonContainer}>
@@ -47,6 +59,17 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </CameraView>
+      {!scanned && (
+        <Button title={'Start Scanning'} onPress={startScanning} />
+      )}
+      {scanned && (
+        <Button title={'Tap to Scan Again'} onPress={startScanning} />
+      )}
+      {scannedData && (
+        <View style={styles.scannedDataContainer}>
+          <Text style={styles.scannedDataText}>Scanned Barcode: {scannedData}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -74,6 +97,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  scannedDataContainer: {
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    elevation: 5,
+    margin: 20,
+  },
+  scannedDataText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',

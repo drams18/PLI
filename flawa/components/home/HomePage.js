@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import SearchBar from "../search/SearchBar";
 import AddProduct from "../addProduct/addProduct";
-import ScanProduct from "../scan/ScanProduct"
+import ScanProduct from "../scan/ScanProduct";
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(null);
@@ -29,7 +29,7 @@ const HomePage = () => {
         <Button title="SCANNER" onPress={() => setCurrentPage("scan")} />
       </View>
 
-      <View>{renderPage()}</View>
+      <View style={styles.pageContainer}>{renderPage()}</View>
     </View>
   );
 };
@@ -48,6 +48,13 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginVertical: 20,
+  },
+  pageContainer: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
   },
 });
 
