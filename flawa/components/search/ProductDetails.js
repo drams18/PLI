@@ -10,90 +10,80 @@ import {
 
 const ProductDetails = ({ product, onBack }) => {
   return (
-    <ScrollView style={styles.container}>
-      {product.images && product.images.image ? (
-        <Image
-          source={{ uri: product.images.image }}
-          style={styles.mainImage}
-        />
-      ) : (
-        <Text style={styles.noImageText}>Image non disponible</Text>
-      )}
-
-      <Text style={styles.title}>{product.name || "Nom non disponible"}</Text>
-      <Text style={styles.brand}>
-        Marque : {product.brand || "Non disponible"}
-      </Text>
-      <Text style={styles.info}>ID : {product.id || "Non disponible"}</Text>
-      {product.eans && product.eans.length > 0 ? (
-        <Text style={styles.info}>Code-barres : {product.eans.join(", ")}</Text>
-      ) : (
-        <Text style={styles.info}>Code-barres non disponible</Text>
-      )}
-      <Text style={styles.info}>
-        Score de validation : {product.validation_score || "Non disponible"}
-      </Text>
-      <Text style={styles.info}>
-        Score : {product.score || "Non disponible"}
-      </Text>
-
-      {product.categories && product.categories.length > 0 ? (
-        <>
-          <Text style={styles.sectionTitle}>Catégories</Text>
-          {product.categories.map((category, index) => (
-            <Text key={index} style={styles.sectionContent}>
-              {category.name} (Profondeur: {category.depth || "N/A"})
-            </Text>
-          ))}
-        </>
-      ) : (
-        <Text style={styles.sectionContent}>Aucune catégorie disponible</Text>
-      )}
-
-      {product.compositions && product.compositions.length > 0 ? (
-        <>
-          <Text style={styles.sectionTitle}>Compositions</Text>
-          {product.compositions.map((composition, compIndex) => (
-            <View key={compIndex} style={styles.compositionContainer}>
-              <Text style={styles.compositionTitle}>
-                Composition {compIndex + 1}:
-              </Text>
-              {composition.ingredients && composition.ingredients.length > 0 ? (
-                composition.ingredients.map((ingredient, ingIndex) => (
-                  <View key={ingIndex} style={styles.ingredientContainer}>
-                    <Text style={styles.ingredientName}>
-                      {ingredient.fr_name ||
-                        ingredient.official_name ||
-                        "Nom inconnu"}{" "}
-                      ({ingredient.package_name || "Non disponible"})
-                    </Text>
-                    <Text style={styles.ingredientInfo}>
-                      Score : {ingredient.score || "Non disponible"}
-                    </Text>
-                    {ingredient.families && ingredient.families.length > 0 && (
-                      <Text style={styles.ingredientInfo}>
-                        Famille :{" "}
-                        {ingredient.families.map((fam) => fam.name).join(", ")}
-                      </Text>
-                    )}
-                  </View>
-                ))
-              ) : (
-                <Text style={styles.ingredientInfo}>
-                  Aucune information disponible
-                </Text>
-              )}
-            </View>
-          ))}
-        </>
-      ) : (
-        <Text style={styles.sectionContent}>Aucune composition disponible</Text>
-      )}
-
-      <TouchableOpacity onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backButtonText}>Retour à la recherche</Text>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onBack} style={styles.backButtonTop}>
+        <Text style={styles.backButtonText}>Retour</Text>
       </TouchableOpacity>
-    </ScrollView>
+
+      <ScrollView style={styles.scrollContainer}>
+        {product.images && product.images.image ? (
+          <Image
+            source={{ uri: product.images.image }}
+            style={styles.mainImage}
+          />
+        ) : (
+          <Text style={styles.noImageText}>Image non disponible</Text>
+        )}
+
+        <Text style={styles.title}>{product.name || "Nom non disponible"}</Text>
+        <Text style={styles.brand}>
+          Marque : {product.brand || "Non disponible"}
+        </Text>
+        {product.eans && product.eans.length > 0 ? (
+          <Text style={styles.info}>Code-barres : {product.eans.join(", ")}</Text>
+        ) : (
+          <Text style={styles.info}>Code-barres non disponible</Text>
+        )}
+
+        {product.categories && product.categories.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>Catégories</Text>
+            {product.categories.map((category, index) => (
+              <Text key={index} style={styles.sectionContent}>
+                {category.name}
+              </Text>
+            ))}
+          </>
+        ) : (
+          <Text style={styles.sectionContent}>Aucune catégorie disponible</Text>
+        )}
+
+        {product.compositions && product.compositions.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>Compositions</Text>
+            {product.compositions.map((composition, compIndex) => (
+              <View key={compIndex} style={styles.compositionContainer}>
+                <Text style={styles.compositionTitle}>
+                  Composition {compIndex + 1}:
+                </Text>
+                {composition.ingredients && composition.ingredients.length > 0 ? (
+                  composition.ingredients.map((ingredient, ingIndex) => (
+                    <View key={ingIndex} style={styles.ingredientContainer}>
+                      <Text style={styles.ingredientName}>
+                        {ingredient.fr_name ||
+                          ingredient.official_name ||
+                          "Nom inconnu"}{" "}
+                        ({ingredient.package_name || "Non disponible"})
+                      </Text>
+                    </View>
+                  ))
+                ) : (
+                  <Text style={styles.ingredientInfo}>
+                    Aucune information disponible
+                  </Text>
+                )}
+              </View>
+            ))}
+          </>
+        ) : (
+          <Text style={styles.sectionContent}>Aucune composition disponible</Text>
+        )}
+
+        <TouchableOpacity onPress={onBack} style={styles.backButton}>
+          <Text style={styles.backButtonText}>Retour à la recherche</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -101,12 +91,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: '20%',
+  },
+  scrollContainer: {
+    flexGrow: 1,
   },
   mainImage: {
     width: "100%",
-    height: 200,
-    resizeMode: "contain",
+    height: 250,
+    borderRadius: 10,
+    resizeMode: "cover",
     marginBottom: 20,
+    borderColor: "#A7AEF9",
+    borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
   },
   noImageText: {
     fontSize: 16,
@@ -115,36 +116,51 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
+    color: "#4B4B4B",
   },
   brand: {
     fontSize: 18,
     marginBottom: 5,
+    color: "#6C757D",
   },
   info: {
     fontSize: 16,
     marginBottom: 5,
+    color: "#495057",
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
     marginTop: 20,
     marginBottom: 10,
+    color: "#A7AEF9",
   },
   sectionContent: {
     fontSize: 16,
     marginBottom: 5,
+    color: "#343A40",
   },
   compositionContainer: {
     marginBottom: 15,
+    borderWidth: 1,
+    borderColor: "#A7AEF9",
+    borderRadius: 8,
+    padding: 10,
+    backgroundColor: "#ffffff",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   compositionTitle: {
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 5,
+    color: "#4B4B4B",
   },
   ingredientContainer: {
     marginLeft: 10,
@@ -153,6 +169,7 @@ const styles = StyleSheet.create({
   ingredientName: {
     fontSize: 16,
     fontWeight: "600",
+    color: "#495057",
   },
   ingredientInfo: {
     fontSize: 14,
@@ -160,14 +177,30 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 40,
-    backgroundColor: "#007BFF",
+    backgroundColor: "#A7AEF9",
     padding: 15,
     borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  backButtonTop: {
+    marginBottom: 10,
+    backgroundColor: "#A7AEF9",
+    padding: 10,
+    borderRadius: 5,
+    alignSelf: "flex-start",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
   },
   backButtonText: {
     color: "white",
     textAlign: "center",
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
 

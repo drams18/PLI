@@ -1,22 +1,14 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import ProductHomePage from "./ProductsHomePage";
+import { View, Button, StyleSheet } from "react-native";
 
-const MainView = () => {
-  return (
-    <View style={styles.container}>
-      <ProductHomePage />
-    </View>
-  );
+const HomePage = ({ navigation }) => {
+  return <View style={styles.container}></View>;
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#A7AEF9", 
-    justifyContent: "center",
-    paddingTop: 20,
+    backgroundColor: "#A7AEF9",
   },
 });
 
-export default MainView;
+export default HomePage;

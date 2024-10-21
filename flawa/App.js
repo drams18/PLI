@@ -1,41 +1,72 @@
-import React, { useState } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-import HomePage from './components/home/HomePage';
-import SearchBar from './components/search/SearchBar';
-import AddProduct from './components/addProduct/addProduct';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "./components/home/HomePage";
+import SearchScreen from "./components/search/SearchBar";
+import ProductHome from "./components/home/ProductsHomePage";
+import ScanProduct from "./components/scan/CameraScreen";
+import Icon from "react-native-vector-icons/Ionicons";
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+const Tab = createBottomTabNavigator();
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'search':
-        return <SearchBar />;
-      case 'addProduct':
-        return <AddProduct />;
-      default:
-        return <HomePage />;
-    }
-  };
-
+const App = () => {
   return (
     <View style={styles.container}>
-      {renderPage()}
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            tabBarStyle: { backgroundColor: "#A7AEF9" },
+          }}
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="home-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={SearchScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="search-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Products"
+            component={ProductHome}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="pricetag-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Scan"
+            component={ScanProduct}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Icon name="scan-outline" size={size} color={color} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  navBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20,
+    backgroundColor: "#A7AEF9",
   },
 });
+
+export default App;

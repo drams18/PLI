@@ -185,7 +185,8 @@ const SearchBar = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 30,
+    paddingTop: '15%',
   },
   searchInput: {
     height: 40,
