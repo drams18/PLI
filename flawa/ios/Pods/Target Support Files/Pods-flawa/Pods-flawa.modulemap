@@ -1,0 +1,6 @@
+module Pods_flawa {
+  umbrella header "Pods-flawa-umbrella.h"
+
+  export *
+  module * { export * }
+}

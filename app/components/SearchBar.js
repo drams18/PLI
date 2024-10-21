@@ -12,6 +12,15 @@ import {
 } from "react-native";
 import ProductDetails from "./ProductDetails";
 import ProductItem from "./ProductItem";
+import CategoryList from "../category/CategoryList";
+
+const categories = [
+  { id: 1, name: "Soins du visage" },
+  { id: 2, name: "Maquillage" },
+  { id: 3, name: "Soins capillaires" },
+  { id: 4, name: "Parfums" },
+  { id: 5, name: "Hygiène" },
+];
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -110,6 +119,11 @@ const SearchBar = () => {
     }
   };
 
+  const handleCategoryPress = (category) => {
+    // Ici, vous pouvez gérer la logique pour filtrer les produits par catégorie
+    console.log(`Catégorie sélectionnée : ${category.name}`);
+  };
+
   if (selectedProduct) {
     return (
       <ProductDetails
@@ -134,7 +148,15 @@ const SearchBar = () => {
         </TouchableOpacity>
       )}
 
+<<<<<<< Updated upstream:app/components/SearchBar.js
       {/* Affichage des suggestions */}
+=======
+      <CategoryList
+        categories={categories}
+        onCategoryPress={handleCategoryPress}
+      />
+
+>>>>>>> Stashed changes:flawa/components/search/SearchBar.js
       {suggestions.length > 0 && (
         <ScrollView style={styles.suggestionsContainer}>
           {suggestions.map((item) => (
@@ -149,7 +171,7 @@ const SearchBar = () => {
         </ScrollView>
       )}
 
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {loading && <ActivityIndicator size="large" color="#007BFF" />}
       {error && <Text style={styles.errorText}>{error}</Text>}
 
       {!loading && !error && filteredProducts.length > 0 && (
@@ -165,7 +187,7 @@ const SearchBar = () => {
           onEndReachedThreshold={0.5}
           ListFooterComponent={
             loadingMore ? (
-              <ActivityIndicator size="small" color="#0000ff" />
+              <ActivityIndicator size="small" color="#007BFF" />
             ) : null
           }
         />
@@ -182,51 +204,69 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+<<<<<<< Updated upstream:app/components/SearchBar.js
+=======
+    paddingTop: "13%",
+    backgroundColor: "#F7F9FC",
+>>>>>>> Stashed changes:flawa/components/search/SearchBar.js
   },
   searchInput: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
+    height: 50,
+    borderColor: "#007BFF",
+    borderWidth: 2,
+    borderRadius: 25,
     marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
+    paddingHorizontal: 20,
+    backgroundColor: "#FFFFFF",
+    elevation: 5,
   },
   searchButton: {
     backgroundColor: "#007BFF",
-    padding: 10,
-    borderRadius: 5,
+    paddingVertical: 12,
+    borderRadius: 25,
     marginBottom: 10,
+    elevation: 2,
   },
   searchButtonText: {
     color: "white",
     textAlign: "center",
     fontSize: 16,
+    fontWeight: "bold",
   },
   errorText: {
     color: "red",
     textAlign: "center",
     marginBottom: 10,
+    fontSize: 16,
   },
   noResultsText: {
     fontSize: 16,
     textAlign: "center",
-    marginTop: 10,
-  },
-  columnWrapper: {
-    justifyContent: "space-between",
+    marginTop: 20,
   },
   suggestionsContainer: {
+<<<<<<< Updated upstream:app/components/SearchBar.js
     backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
     maxHeight: 150, // Limiter la hauteur de la liste
     marginBottom: 10,
+=======
+    maxHeight: 150,
+    marginVertical: 10,
+    backgroundColor: "white",
+    borderRadius: 5,
+    elevation: 5,
+>>>>>>> Stashed changes:flawa/components/search/SearchBar.js
   },
   suggestionItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: "#e0e0e0",
+  },
+  columnWrapper: {
+    justifyContent: "space-between",
   },
 });
 
