@@ -7,7 +7,7 @@ import SearchScreen from "./components/search/SearchBar";
 import ProductHome from "./components/home/ProductsHomePage";
 import ScanProduct from "./components/scan/CameraScreen";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ProductProvider } from './api/ProductContext';
+import { ProductProvider } from "./api/ProductContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +19,11 @@ const App = () => {
           <Tab.Navigator
             screenOptions={{
               headerShown: false,
-              tabBarStyle: { backgroundColor: "#A7AEF9" },
+              tabBarStyle: {
+                backgroundColor: "#A7AEF9",
+                borderTopColor: "#A7AEF9",
+                borderTopWidth: 1,
+              },
             }}
           >
             <Tab.Screen
