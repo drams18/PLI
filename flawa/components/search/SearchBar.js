@@ -116,10 +116,14 @@ const SearchBar = () => {
     return (
       <ProductDetails
         product={selectedProduct}
-        onBack={() => setSelectedProduct(null)}
+        onBack={() => {
+          setSelectedProduct(null);
+          setQuery("");
+        }}
       />
     );
   }
+  
 
   return (
     <View style={styles.container}>
@@ -186,53 +190,65 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    paddingTop: '15%',
+    paddingTop: '20%',
+    backgroundColor: "#A7AEF9",
   },
   searchInput: {
-    height: 40,
-    borderColor: "#ccc",
+    height: 45,
+    borderColor: "#ddd",
     borderWidth: 1,
     marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    backgroundColor: '#fff',
   },
   searchButton: {
     backgroundColor: "#007BFF",
-    padding: 10,
-    borderRadius: 5,
+    padding: 12,
+    borderRadius: 10,
     marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5,
   },
   searchButtonText: {
     color: "white",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   errorText: {
     color: "red",
     textAlign: "center",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   noResultsText: {
     fontSize: 16,
     textAlign: "center",
-    marginTop: 10,
+    marginTop: 20,
+    color: '#666',
   },
   columnWrapper: {
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   suggestionsContainer: {
     backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 5,
-    maxHeight: 150,
+    borderRadius: 10,
+    maxHeight: 200,
     marginBottom: 10,
+    padding: 10,
   },
   suggestionItem: {
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
+    fontSize: 16,
   },
 });
+
 
 export default SearchBar;

@@ -13,7 +13,7 @@ const MainView = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#A7AEF9", 
+    backgroundColor: "#A7AEF9",
     justifyContent: "center",
     paddingTop: 20,
   },

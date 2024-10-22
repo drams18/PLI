@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: "#A7AEF9",
   },
   scannedProductContainer: {
     position: 'absolute',
