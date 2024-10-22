@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./components/home/HomePage";
 import SearchScreen from "./components/search/SearchBar";
-import ProductHome from "./components/home/ProductsHomePage";
+import Auth from "./components/screens/Auth";
 import ScanProduct from "./components/scan/CameraScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ProductProvider } from "./api/ProductContext";
@@ -45,8 +45,8 @@ const App = () => {
               }}
             />
             <Tab.Screen
-              name="Products"
-              component={ProductHome}
+              name="Auth"
+              component={Auth} // Utilisez le composant Auth ici
               options={{
                 tabBarIcon: ({ color, size }) => (
                   <Icon name="pricetag-outline" size={size} color={color} />

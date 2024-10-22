@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: '20%',
-    backgroundColor: "#A7AEF9",
   },
   errorText: {
     color: "red",
